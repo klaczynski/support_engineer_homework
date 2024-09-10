@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reports</title>
+  </head>
+  <body>
+    <h1>REPORTS</h1>
+    <ul>
+      <li>
+        <a href="#opsettingreport">
+          Display Optimization Settings: Takes the value of a myShopifyDomain
+          field as an input and returns their optimization settings.
+        </a>
+      </li>
+      <li>
+        <a href="#displayall">
+          Display All Organizations: Loops through all organizations and shows
+          the date they were created (DD/MM/YYYY), their status, and planName
+          sorted by oldest to newest.
+        </a>
+      </li>
+      <li>
+        <a href="#displaycancelled">
+          Display Cancelled Organizations: Returns the list of organizations
+          whose status is cancelled.
+        </a>
+      </li>
+      <li>
+        <a href="#displayorg">
+          Display 1 Organization: Takes the value of an orgName and returns the
+          organization record in JSON format.
+        </a>
+      </li>
+    </ul>
+    <form id="opsettingseport" action="/opsettingseport" method="post">
+      <h2>Display Optimization Settings</h2>
+      <label for="domainName"
+        >Enter your Shopify domain (ex - myaccount.myshopify.com)</label
+      >
+      <input type="text" name="domainName" id="domainName" />
+      <button type="submit">SUBMIT</button>
+    </form>
+    <form id="displayall" action="/displayall" method="get">
+      <h2>Display All</h2>
+      <button type="submit">SUBMIT</button>
+    </form>
+    <form id="displaycancelled" action="/displaycancelled" method="get">
+      <h2>Display Cancelled</h2>
+      <button type="submit">SUBMIT</button>
+    </form>
+    <form id="displayorg" action="/displayorg" method="post">
+      <h2>Display Org</h2>
+      <label for="orgname">Enter your organization name:</label>
+      <input type="text" name="orgname" id="orgname" />
+      <button type="submit">SUBMIT</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+1. How many organizations do not have account plans: 2
+select id
+from org
+where id not in (select organizationid from plan)
+  88684712-d564-41be-b37f-4e8084439806
+  f7ccfc71-1858-40f4-8d03-77e3d1efb86c
+
+2. How many organizations have more than one account plan: 1
+select organizationid, count (*) //remove count here if don't want it displayed
+from plan
+group by organizationid
+having count(*) > 1
+  c535b056-fe20-4409-ab16-a4b7c5e7dff6	2
+
+3. List all organizations that have only one account plan
+select organizationid, count (*)
+from plan
+group by organizationid
+having count(*) = 1
+or
+select org.orgname, plan.organizationid, count (*)
+from plan
+inner join org on org.id = plan.organizationid
+group by organizationid
+having count(*) = 1
+  Test Account 8	126c230a-f07c-4416-9406-c3758b4be772	1
+  Test Account 4	53980994-173e-4620-b560-2c2c437953ec	1
+  Test Account 2	75f223ec-2ede-4b38-9096-f9333d4141c7	1
+  Test Account 6	788f31b6-1418-452e-9064-28041319523d	1
+  Test Account 9	8533ba30-ad82-41e6-9825-af3c2122d95f	1
+  Test Account 7	adc50e61-6072-410e-9936-162ce46982ce	1
+  Test Account 1	cce0223a-fcac-4953-9137-3c5c10c158c3	1
+
+4. List all organizations that have the PASSWORDLESS feature set to true. This is not a good solution but it works.
+select org.orgname, plan.organizationid, plan.features
+from plan
+inner join org on org.id = plan.organizationid
+WHERE features like  '%PASSWORDLESS%tru%'
+  Test Account 2	75f223ec-2ede-4b38-9096-f9333d4141c7	{"CORE_CONFIGURATION":true,"CORE_SUBSCRIPTIONS":true,"LOOKER_ANALYTICS":true,"RETENTION":true,"INTEGRATIONS":true,"PREPAID_SELLING_PLAN":true,"SEQUENTIAL_SELLING_PLAN":true,"MIGRATIONS":true,"BUNDLES":true,"LOYALTY":true,"TRANSLATIONS":true,"PASSWORDLESS": true}
+
