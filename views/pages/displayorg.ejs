@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Settings</title>
+    <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <ul>
+        <% Object.keys(orgs).forEach(key => { %>
+          <li> <%=key %>: <%=orgs[key] %>, </li>
+      <%  }); %>
+      </li>
+    </ul>
+  </body>
+</html>
